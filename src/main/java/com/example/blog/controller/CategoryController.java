@@ -29,11 +29,10 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public String addCategory(ModelMap map, @ModelAttribute Category category) throws IOException {
+    public String addCategory( @ModelAttribute Category category) throws IOException {
 
         categoryRepository.save(category);
-        map.addAttribute("posts", postRepository.findAll());
-        map.addAttribute("categories", categoryRepository.findAll());
+
         return "redirect:/";
     }
 
