@@ -67,15 +67,8 @@ public class PostController {
         return "post";
     }
     @GetMapping("/postByCategoryId")
-    public String postByCategoryId(@RequestParam("id") int id, ModelMap map) {
-        List<Post> all = postRepository.findAll();
-        List<Post> postByCategoryId = new LinkedList<>();
-        for (Post post : all) {
-            if (post.getCategory().getId() == id)  {
-                postByCategoryId.add(post);
-            }
-        }
-        map.addAttribute("posts", postByCategoryId);
+    public String postByCategoryId(@RequestParam("id") int categoryId, ModelMap map) {
+        map.addAttribute("posts",  postRepository.findAllByCategoryId(categoryId));
         return "postByCategory";
     }
 
